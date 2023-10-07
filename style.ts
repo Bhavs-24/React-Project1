@@ -50,7 +50,7 @@ interface point{
   x:number;
   y:number;
  }
- function logpoint(p:point){
+ function logpoint1(p:point){
   console.log('${p.x},${p.y}')
  }
   const point = {x:12,y:24}
@@ -117,11 +117,11 @@ names.forEach((s) => {
    
 //Object types
 // The parameter's type annotation is an object type
-function printCoord(pt: { x: number; y: number }) {
+function printCoor(pt: { x: number; y: number }) {
   console.log("The coordinate's x value is " + pt.x);
   console.log("The coordinate's y value is " + pt.y);
 }
-printCoord({ x: 3, y: 7 });
+printCoor({ x: 3, y: 7 });
 
 //unions
 function printId(id: number | string) {
@@ -139,15 +139,15 @@ interface Point {
   y: number;
 }
  
-function printCoordi(pt: Point) {
+function printCoordii(pt: Point) {
   console.log("The coordinate's x value is " + pt.x);
   console.log("The coordinate's y value is " + pt.y);
 }
  
-printCoordi({ x: 80, y: 100 });
+printCoordii({ x: 80, y: 100 });
  
 //Function Type
-function greeter2(fn: (a: string) => void) {
+function greeter3(fn: (a: string) => void) {
   fn("Hello, World");
 }
 
@@ -155,4 +155,19 @@ function printToConsole(s: string) {
   console.log(s);
 }
 
-greeter2(printToConsole);
+
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
+};
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
+}
+
+function myFunc(someArg: number) {
+  return someArg > 3;
+}
+myFunc.description = "default description";
+
+doSomething(myFunc);
+
